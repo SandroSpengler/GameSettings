@@ -4,12 +4,22 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:GameSettings"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:page="clr-namespace:GameSettings.MVVM.Pages"
+    Shell.FlyoutBehavior="Disabled"
+    >
 
-    <ShellContent
+    <TabBar>
+        <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage">
-    </ShellContent>
+        Route="Home"        >
+        </ShellContent>
+
+        <ShellContent
+        Title="League"
+        ContentTemplate="{DataTemplate page:LeaugePage}"
+        Route="League">
+        </ShellContent>
+    </TabBar>
 
 </Shell>
