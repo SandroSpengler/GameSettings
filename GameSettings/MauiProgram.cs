@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using GameSettings.MVVM.Pages;
+using GameSettings.MVVM.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace GameSettings;
 
@@ -14,6 +16,9 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
+
+        builder.Services.AddTransient<LeaguePage>();
+        builder.Services.AddTransient<LeagueViewModel>();
 
 #if DEBUG
         builder.Logging.AddDebug();

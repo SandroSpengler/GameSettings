@@ -1,9 +1,12 @@
+using GameSettings.MVVM.ViewModels;
+
 namespace GameSettings.MVVM.Pages;
 
-public partial class LeaugePage : ContentPage
+public partial class LeaguePage : ContentPage
 {
-    public LeaugePage()
+    public LeaguePage(LeagueViewModel leagueViewModel)
     {
+        BindingContext = leagueViewModel;
         InitializeComponent();
     }
 }

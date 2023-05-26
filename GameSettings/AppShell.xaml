@@ -17,7 +17,7 @@
 
         <ShellContent
         Title="League"
-        ContentTemplate="{DataTemplate page:LeaugePage}"
+        ContentTemplate="{DataTemplate page:LeaguePage}"
         Route="League">
         </ShellContent>
     </TabBar>
