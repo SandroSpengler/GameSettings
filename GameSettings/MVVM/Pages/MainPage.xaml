@@ -53,14 +53,14 @@
                             </Grid.RowDefinitions>
 
                             <StackLayout Orientation="Horizontal"
-                                     Grid.Row="0"
-                                     Margin="0,15,0,0"
-                                     VerticalOptions="Center">
+                                         Grid.Row="0"
+                                         Margin="0,15,0,0"
+                                         VerticalOptions="Center">
                                 <Label Text="{Binding ReleaseNoteVersion}" 
-                                    FontSize="Medium"/>
+                                       FontSize="Medium"/>
                                 <Label Text="{Binding Title}" 
-                                    Margin="5,0,0,0"
-                                    FontSize="Medium"/>
+                                       Margin="5,0,0,0"
+                                       FontSize="Medium"/>
                             </StackLayout>
 
                             <Label Text="-"
