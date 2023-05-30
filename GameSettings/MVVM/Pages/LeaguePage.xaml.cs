@@ -4,9 +4,9 @@ namespace GameSettings.MVVM.Pages;
 
 public partial class LeaguePage : ContentPage
 {
-    public LeaguePage(LeagueViewModel leagueViewModel)
+    public LeaguePage(LeagueViewModel leagueMV)
     {
-        BindingContext = leagueViewModel;
+        BindingContext = leagueMV;
         InitializeComponent();
     }
 }

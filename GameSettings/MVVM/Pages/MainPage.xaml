@@ -2,7 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GameSettings.MainPage"
+             xmlns:ViewModel="clr-namespace:GameSettings.MVVM.ViewModels"
+             xmlns:Model="clr-namespace:GameSettings.MVVM.Models"
              Title=""
+             x:DataType="ViewModel:MainViewModel"
              >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -17,8 +20,76 @@
                        FontSize="Medium" 
                        VerticalOptions="Center"
                        />
+            <!--<Button 
+            Text="Click Me"
+            Command="{Binding NavigateToRouteCommand}" 
+            CommandParameter="ReleaseNotePage"
+            />-->
         </StackLayout>
-        <ScrollView Grid.Row="1" HorizontalScrollBarVisibility="Always">
+
+        <ListView ItemsSource="{Binding ReleaseNotes}"
+                  Grid.Row="1"
+                  Margin="10,0,0,0">
+            <ListView.Header>
+                <StackLayout>
+                    <Label Text="Release Notes"
+                           FontSize="Large"
+                           FontAttributes="Bold"/>
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="Model:ReleaseNote">
+                    <ViewCell>
+                        <!--<Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>-->
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <StackLayout Orientation="Horizontal"
+                                     Grid.Row="0"
+                                     Margin="0,15,0,0"
+                                     VerticalOptions="Center">
+                                <Label Text="{Binding ReleaseNoteVersion}" 
+                                    FontSize="Medium"/>
+                                <Label Text="{Binding Title}" 
+                                    Margin="5,0,0,0"
+                                    FontSize="Medium"/>
+                            </StackLayout>
+
+                            <Label Text="-"
+                                   Grid.Row="1"
+                                   Margin="20,5,0,0"
+                                   FontSize="Small" />
+                            <Label Text="{Binding ReleaseSummary.Headline}"
+                                   Grid.Row="1"
+                                   Margin="30,5,0,0"
+                                   FontSize="Small"/>
+                        </Grid>
+                        <!--<ListView ItemsSource="{Binding UserExperience.UiChanges}"
+                                      Grid.Row="1">
+                                <ListView.ItemTemplate>
+
+                                    <DataTemplate x:DataType="Model:UiChange">
+                                        <ViewCell>
+
+                                            <Label Text="XXXX"></Label>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>-->
+                        <!--</Grid>-->
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!--<ScrollView Grid.Row="1" HorizontalScrollBarVisibility="Always">
             <StackLayout >
                 <Label Text="Release Notes"
                        Margin="10,0,0,0"
@@ -30,8 +101,14 @@
                        Text="Release 0.0.1" 
                        Margin="10,20,0,0"
                        FontSize="Medium" 
-                       VerticalOptions="Center" 
-                       />
+                       VerticalOptions="Center"
+                >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Command="{Binding NavigateToRouteCommand}"
+                            CommandParameter="ReleaseNotePage"/>
+                    </Label.GestureRecognizers>
+                </Label>
                 <Label  
                        Text="- Improved the layout of the League of Legends Page"  
                        Margin="10,20,0,0"
@@ -45,6 +122,6 @@
                        VerticalOptions="Center" 
                        />
             </StackLayout>
-        </ScrollView>
+        </ScrollView>-->
     </Grid>
 </ContentPage>

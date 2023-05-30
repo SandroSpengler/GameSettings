@@ -18,7 +18,12 @@ public static class MauiProgram
             });
 
         builder.Services.AddTransient<LeaguePage>();
+        builder.Services.AddTransient<MainPage>();
+        builder.Services.AddTransient<ReleaseNotePage>();
+
         builder.Services.AddTransient<LeagueViewModel>();
+        builder.Services.AddTransient<MainViewModel>();
+        builder.Services.AddTransient<ReleaseNoteViewModel>();
 
 #if DEBUG
         builder.Logging.AddDebug();

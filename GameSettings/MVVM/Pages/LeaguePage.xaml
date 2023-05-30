@@ -20,8 +20,7 @@
         </HorizontalStackLayout>
         <Button 
             Text="Click Me"
-            Command="{Binding SelectRiotClientPathCommand}"
-                >
-        </Button>
+            Command="{Binding SelectRiotClientPathCommand}" 
+            />
     </VerticalStackLayout>
 </ContentPage> 

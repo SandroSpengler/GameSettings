@@ -7,12 +7,11 @@
     xmlns:page="clr-namespace:GameSettings.MVVM.Pages"
     Shell.FlyoutBehavior="Disabled"
     >
-
     <TabBar>
         <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="Home"        >
+        Route="Home">
         </ShellContent>
 
         <ShellContent
