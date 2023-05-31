@@ -1,7 +1,8 @@
-﻿using GameSettings.MVVM.Pages;
+﻿using CommunityToolkit.Maui;
+using GameSettings.MVVM.Pages;
 using GameSettings.MVVM.ViewModels;
 using Microsoft.Extensions.Logging;
-
+using System.Text.Json;
 namespace GameSettings;
 
 public static class MauiProgram
@@ -11,11 +12,19 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
+
+        builder.Services.AddSingleton<JsonSerializerOptions>(new JsonSerializerOptions()
+        {
+            PropertyNameCaseInsensitive = true,
+        });
+
+        builder.Services.AddAutoMapper(typeof(MappingProfile));
 
         builder.Services.AddTransient<LeaguePage>();
         builder.Services.AddTransient<MainPage>();
@@ -28,7 +37,6 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
-
         return builder.Build();
     }
 }
