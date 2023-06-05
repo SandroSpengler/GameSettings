@@ -11,18 +11,18 @@ namespace GameSettings.MVVM.ViewModels
     {
         private readonly IMapper _mapper;
 
-        private JsonSerializerOptions _JsonOptions;
+        private JsonSerializerOptions _jsonOptions;
 
         [ObservableProperty]
-        private List<ReleaseNote> _ReleaseNotes;
+        private List<ReleaseNote> _releaseNotesList;
 
         public MainViewModel(JsonSerializerOptions jsonOptions, IMapper mapper)
         {
             _mapper = mapper;
 
-            _JsonOptions = jsonOptions;
+            _jsonOptions = jsonOptions;
 
-            _ReleaseNotes = new List<ReleaseNote>();
+            _releaseNotesList = new List<ReleaseNote>();
 
             LoadReleaseNotes();
         }
@@ -45,10 +45,10 @@ namespace GameSettings.MVVM.ViewModels
                 return;
             }
 
-            ReleaseNotes = new List<ReleaseNote>();
+            ReleaseNotesList = new List<ReleaseNote>();
 
             string releaseNotesContent = File.ReadAllText($"{basePath}\\releaseNotes.json");
-            ReleaseNotes = JsonSerializer.Deserialize<List<ReleaseNote>>(releaseNotesContent, _JsonOptions);
+            ReleaseNotesList = JsonSerializer.Deserialize<List<ReleaseNote>>(releaseNotesContent, _jsonOptions);
 
 
         }

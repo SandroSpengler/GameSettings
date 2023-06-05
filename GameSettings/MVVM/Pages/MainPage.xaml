@@ -30,7 +30,7 @@
                        />
         </StackLayout>
 
-        <ListView ItemsSource="{Binding ReleaseNotes}"
+        <ListView ItemsSource="{Binding ReleaseNotesList}"
                   Grid.Row="1"
                   Margin="10,0,0,0">
             <ListView.Behaviors>
@@ -62,7 +62,8 @@
                                          Margin="10,15,0,5"
                                          VerticalOptions="Center">
                                 <Label Text="{Binding ReleaseNoteVersion}" 
-                                       FontSize="Medium"/>
+                                       FontSize="Medium"
+                                       FontAttributes="Bold"/>
                                 <Label Text="{Binding Title}" 
                                        Margin="5,0,0,0"
                                        FontSize="Medium"

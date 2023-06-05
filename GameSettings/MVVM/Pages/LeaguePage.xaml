@@ -5,22 +5,112 @@
              xmlns:ViewModel="clr-namespace:GameSettings.MVVM.ViewModels"
              x:DataType="ViewModel:LeagueViewModel"
              Title="">
-    <VerticalStackLayout>
-        <HorizontalStackLayout>
-            <Label 
-            Text="Riot Client Path:"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" >
-            </Label>
-            <Label 
-            Text="{Binding RiotClientPath}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" >
-            </Label>
-        </HorizontalStackLayout>
-        <Button 
-            Text="Click Me"
-            Command="{Binding SelectRiotClientPathCommand}" 
-            />
-    </VerticalStackLayout>
+    <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="150"></RowDefinition>
+            <RowDefinition Height="150"></RowDefinition>
+            <RowDefinition Height="150"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Button Text="Launch Client"
+                WidthRequest="160"
+                HeightRequest="50"
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalOptions="Start"
+                IsEnabled="{Binding CanLaunchClient}"
+                Command="{Binding StartMulticlientCommand}"/>
+
+        <Button Text="close all clients"
+                WidthRequest="160"
+                HeightRequest="50"
+                Grid.Row="0"
+                Grid.Column="1"
+                HorizontalOptions="Start"
+                Command="{Binding CloseAllClientsCommand}"/>
+        <Button Text="riot path"
+                WidthRequest="160"
+                HeightRequest="50"
+                Grid.Row="0"
+                Grid.Column="2"
+                HorizontalOptions="Start"
+                Command="{Binding SelectLolApplicationDirectyCommand}"
+                CommandParameter="Riot"/>
+        <Button Text="lol path"
+                WidthRequest="160"
+                HeightRequest="50"
+                Grid.Row="0"
+                Grid.Column="3"
+                HorizontalOptions="Start"
+                Command="{Binding SelectLolApplicationDirectyCommand}"
+                CommandParameter="League"/>
+
+        <StackLayout Orientation="Horizontal"
+                     Grid.Row="0"
+                     Grid.Column="11"
+                     VerticalOptions="Center">
+            <Label Text="clients -" 
+                   FontSize="Medium"/>
+            <Label Text="{Binding RunningLoLClientCount}" 
+                   Margin="15,0,0,0"
+                   FontSize="Medium"/>
+        </StackLayout>
+
+        <Label Text="Riot Client Path" 
+               Margin="5,50,0,0"
+               Grid.Row="1"
+               Grid.ColumnSpan="6"
+               FontSize="Medium"
+               FontAttributes="Bold"/>
+
+        <Label Text="{Binding RiotApplicationPath}" 
+               Margin="5,50,0,0"
+               Grid.Row="1"
+               Grid.Column="6"
+               Grid.ColumnSpan="6"
+               FontSize="Medium"/>
+
+        <Label Text="LoL Client Path" 
+               Margin="5,50,0,0"
+               Grid.Row="2"
+               Grid.ColumnSpan="6"
+               FontSize="Medium"
+               FontAttributes="Bold"/>
+
+        <Label Text="{Binding LolApplicationPath}" 
+               Margin="5,50,0,0"
+               Grid.Row="2"
+               Grid.Column="6"
+               Grid.ColumnSpan="6"
+               FontSize="Medium"/>  
+        
+        <Label Text="Logged in as" 
+               Margin="5,50,0,0"
+               Grid.Row="3"
+               Grid.Column="0"
+               Grid.ColumnSpan="6"
+               FontSize="Medium"/>   
+        <Label Text="{Binding Summoner.DisplayName}" 
+               Margin="5,50,0,0"
+               Grid.Row="3"
+               Grid.Column="6"
+               Grid.ColumnSpan="6"
+               FontSize="Medium"/>
+        
+        
+    </Grid>
 </ContentPage> 
