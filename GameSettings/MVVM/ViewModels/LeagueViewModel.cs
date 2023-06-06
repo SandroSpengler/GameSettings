@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GameSettings.MVVM.Models;
 using RestEase;
@@ -92,12 +93,8 @@ namespace GameSettings.MVVM.ViewModels
         [RelayCommand]
         public async Task SelectLolApplicationDirecty(string clientType)
         {
-            // ToDo
-            // Check if the Riot Client is installed at the default location under C://
-            //FilePicker fileDialog = new OpenFileDialog();
-            //fileDialog.Filter = "exe|*.exe;";
-            //fileDialog.InitialDirectory = @"C:\"; ;
-            //fileDialog.Title = $"Please select your {clientType} client";
+            PickOptions pickOptions = new PickOptions();
+            pickOptions.PickerTitle = $"Please select your {clientType} client";
 
             var result = await FilePicker.Default.PickAsync();
 

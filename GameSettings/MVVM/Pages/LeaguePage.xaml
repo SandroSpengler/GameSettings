@@ -20,10 +20,6 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Button Text="Launch Client"
@@ -32,6 +28,7 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 HorizontalOptions="Start"
+                ToolTipProperties.Text="Starts up a new League of Legends instance"
                 IsEnabled="{Binding CanLaunchClient}"
                 Command="{Binding StartMulticlientCommand}"/>
 
@@ -41,6 +38,7 @@
                 Grid.Row="0"
                 Grid.Column="1"
                 HorizontalOptions="Start"
+                ToolTipProperties.Text="Terminates all running clients"
                 Command="{Binding CloseAllClientsCommand}"/>
         <Button Text="riot path"
                 WidthRequest="160"
@@ -48,6 +46,7 @@
                 Grid.Row="0"
                 Grid.Column="2"
                 HorizontalOptions="Start"
+                ToolTipProperties.Text="Opens the File Explorer to select a Path"
                 Command="{Binding SelectLolApplicationDirectyCommand}"
                 CommandParameter="Riot"/>
         <Button Text="lol path"
@@ -56,6 +55,7 @@
                 Grid.Row="0"
                 Grid.Column="3"
                 HorizontalOptions="Start"
+                ToolTipProperties.Text="Opens the File Explorer to select a Path"
                 Command="{Binding SelectLolApplicationDirectyCommand}"
                 CommandParameter="League"/>
 
@@ -78,37 +78,39 @@
                FontAttributes="Bold"/>
 
         <Label Text="{Binding RiotApplicationPath}" 
+               ToolTipProperties.Text="The Path of your Riot Client"
                Margin="5,50,0,0"
                Grid.Row="1"
-               Grid.Column="6"
-               Grid.ColumnSpan="6"
+               Grid.Column="4"
+               Grid.ColumnSpan="4"
                FontSize="Medium"/>
 
         <Label Text="LoL Client Path" 
+               ToolTipProperties.Text="The Path of your League of Legends Client"
                Margin="5,50,0,0"
                Grid.Row="2"
-               Grid.ColumnSpan="6"
+               Grid.ColumnSpan="4"
                FontSize="Medium"
                FontAttributes="Bold"/>
 
         <Label Text="{Binding LolApplicationPath}" 
                Margin="5,50,0,0"
                Grid.Row="2"
-               Grid.Column="6"
-               Grid.ColumnSpan="6"
+               Grid.Column="4"
+               Grid.ColumnSpan="4"
                FontSize="Medium"/>  
         
         <Label Text="Logged in as" 
                Margin="5,50,0,0"
                Grid.Row="3"
                Grid.Column="0"
-               Grid.ColumnSpan="6"
+               Grid.ColumnSpan="4"
                FontSize="Medium"/>   
         <Label Text="{Binding Summoner.DisplayName}" 
                Margin="5,50,0,0"
                Grid.Row="3"
-               Grid.Column="6"
-               Grid.ColumnSpan="6"
+               Grid.Column="4"
+               Grid.ColumnSpan="4"
                FontSize="Medium"/>
         
         
