@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Maui;
+using GameSettings.Interfaces;
 using GameSettings.MVVM.Pages;
 using GameSettings.MVVM.ViewModels;
 using Microsoft.Extensions.Logging;
+using RestEase.HttpClientFactory;
 using System.Text.Json;
 namespace GameSettings;
 
@@ -25,6 +27,8 @@ public static class MauiProgram
         });
 
         builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+        builder.Services.AddRestEaseClient<IReleaseNoteApi>("https://releasenote.axfert.com/api");
 
         builder.Services.AddTransient<LeaguePage>();
         builder.Services.AddTransient<MainPage>();

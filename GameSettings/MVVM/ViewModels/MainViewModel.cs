@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GameSettings.Interfaces;
 using GameSettings.MVVM.Models;
 using GameSettings.MVVM.Pages;
 using System.Text.Json;
@@ -11,14 +12,18 @@ namespace GameSettings.MVVM.ViewModels
     {
         private readonly IMapper _mapper;
 
+        private readonly IReleaseNoteApi _releaseNoteApi;
+
         private JsonSerializerOptions _jsonOptions;
 
         [ObservableProperty]
         private List<ReleaseNote> _releaseNotesList;
 
-        public MainViewModel(JsonSerializerOptions jsonOptions, IMapper mapper)
+        public MainViewModel(JsonSerializerOptions jsonOptions, IMapper mapper, IReleaseNoteApi releaseNoteApi)
         {
             _mapper = mapper;
+
+            _releaseNoteApi = releaseNoteApi;
 
             _jsonOptions = jsonOptions;
 
@@ -27,7 +32,7 @@ namespace GameSettings.MVVM.ViewModels
             LoadReleaseNotes();
         }
 
-        public void LoadReleaseNotes()
+        public async Task LoadReleaseNotes()
         {
             string basePath = @"C:\GameSettings";
 
@@ -40,18 +45,49 @@ namespace GameSettings.MVVM.ViewModels
                 Directory.CreateDirectory(basePath);
             }
 #endif
-            if (!File.Exists($"{basePath}\\releaseNotes.json"))
+
+
+            // Check if newer releasenotes are available
+            ReleaseNotesList = new List<ReleaseNote>();
+
+            try
+            {
+                string releaseNotesContent = File.ReadAllText($"{basePath}\\releaseNotes.json");
+
+
+                ReleaseNotesList = JsonSerializer.Deserialize<List<ReleaseNote>>(releaseNotesContent, _jsonOptions);
+            }
+            catch (Exception e)
+            {
+                //var toast = Toast.Make("Could not read locally saved Release Notes", ToastDuration.Long, 14);
+
+                if (File.Exists($"{basePath}\\releaseNotes.json"))
+                {
+
+                    File.Delete($"{basePath}\\releaseNotes.json");
+                }
+
+            }
+
+            List<ReleaseNote> currentReleaseNotes = await _releaseNoteApi.GetAllReleaseNotes();
+
+            if (currentReleaseNotes == null && currentReleaseNotes.Count == 0)
             {
                 return;
             }
 
-            ReleaseNotesList = new List<ReleaseNote>();
+            if (currentReleaseNotes.Count == ReleaseNotesList.Count)
+            {
+                return;
+            }
 
-            string releaseNotesContent = File.ReadAllText($"{basePath}\\releaseNotes.json");
-            ReleaseNotesList = JsonSerializer.Deserialize<List<ReleaseNote>>(releaseNotesContent, _jsonOptions);
+            ReleaseNotesList = currentReleaseNotes;
 
+            string jsonToSave = JsonSerializer.Serialize(ReleaseNotesList);
 
+            File.WriteAllText($"{basePath}\\releaseNotes.json", jsonToSave);
         }
+
 
         [RelayCommand]
         public Task NavigateToRoute(ReleaseNote selectedReleaseNote)
